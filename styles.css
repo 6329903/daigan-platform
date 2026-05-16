@@ -178,6 +178,16 @@ body.light .topbar { background: rgba(255, 255, 255, 0.78); }
   font-weight: 800;
 }
 
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-bottom-nav {
+  display: none;
+}
+
 .sidebar {
   position: sticky;
   top: 64px;
@@ -1542,4 +1552,516 @@ svg { width: 18px; height: 18px; stroke-width: 2; }
   }
   .task-row > :nth-child(n+3) { grid-column: 2; }
   .footer { display: grid; gap: 10px; }
+}
+
+@media (max-width: 640px) {
+  body {
+    background:
+      radial-gradient(circle at 50% -10%, rgba(139, 92, 246, 0.22), transparent 18rem),
+      linear-gradient(160deg, var(--bg), var(--bg-soft));
+  }
+
+  .topbar {
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .brand {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 15px;
+  }
+
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+    border-radius: 9px;
+  }
+
+  .top-actions {
+    margin-left: auto;
+    gap: 6px;
+  }
+
+  .auth-btn {
+    display: none;
+  }
+
+  .icon-btn,
+  .avatar-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .search {
+    order: 2;
+    flex: 1 0 100%;
+    width: 100%;
+  }
+
+  .search input {
+    height: 38px;
+    border-radius: 11px;
+  }
+
+  .nav-row {
+    order: 3;
+    gap: 7px;
+    margin: 0 -12px;
+    padding: 0 12px 4px;
+    scrollbar-width: none;
+  }
+
+  .nav-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-row .nav-btn {
+    flex: 0 0 auto;
+    min-height: 34px;
+    padding: 0 11px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .nav-row .nav-btn svg {
+    display: none;
+  }
+
+  .mobile-bottom-nav {
+    position: fixed;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    padding: 8px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(9, 14, 28, 0.88);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.36);
+    backdrop-filter: blur(18px);
+  }
+
+  body.light .mobile-bottom-nav {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .mobile-bottom-nav .nav-btn {
+    min-height: 48px;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3px;
+    padding: 5px 2px;
+    border-radius: 13px;
+    font-size: 11px;
+  }
+
+  .mobile-bottom-nav .nav-btn svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .mobile-bottom-nav .nav-btn.active {
+    box-shadow: none;
+    color: #fff;
+    background: linear-gradient(135deg, var(--brand), #6d5dfc);
+  }
+
+  .main {
+    padding: 14px 12px 102px;
+  }
+
+  .home-stack {
+    gap: 14px;
+  }
+
+  .hero,
+  .card,
+  .task-card,
+  .task-row,
+  .advantage,
+  .flow-step,
+  .process-node,
+  .stat-tile {
+    border-radius: 12px;
+  }
+
+  .clean-hero {
+    gap: 18px;
+    padding: 20px;
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+    line-height: 1.12;
+  }
+
+  .hero p {
+    margin: 12px 0 18px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .game-tags {
+    gap: 7px;
+    margin: -4px 0 18px;
+  }
+
+  .game-tags span {
+    min-height: 27px;
+    padding: 0 9px;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .primary,
+  .secondary,
+  .ghost,
+  .danger-btn,
+  .success-btn {
+    width: 100%;
+    min-height: 42px;
+    padding: 0 12px;
+  }
+
+  .hero-board {
+    padding: 14px;
+  }
+
+  .board-task {
+    grid-template-columns: 1fr;
+    min-height: 96px;
+  }
+
+  .board-task .price {
+    margin-top: 8px;
+  }
+
+  .board-metrics {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .board-metrics div {
+    min-height: 66px;
+    padding: 10px;
+  }
+
+  .home-side {
+    gap: 12px;
+  }
+
+  .profile-card,
+  .notice-card,
+  .market-feed,
+  .leaderboard,
+  .process-panel,
+  .detail-content,
+  .profile-panel,
+  .profile-summary {
+    padding: 16px;
+  }
+
+  .profile-head {
+    align-items: flex-start;
+  }
+
+  .big-avatar {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    font-size: 20px;
+  }
+
+  .balance {
+    padding: 14px;
+  }
+
+  .balance strong,
+  .wallet-hero strong {
+    font-size: 26px;
+  }
+
+  .stats,
+  .home-stat-strip,
+  .profile-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .stat {
+    padding: 12px;
+  }
+
+  .stat strong,
+  .stat-tile strong {
+    font-size: 20px;
+  }
+
+  .stat-tile {
+    min-height: 86px;
+    padding: 14px;
+  }
+
+  .section-title {
+    align-items: flex-start;
+    gap: 10px;
+    margin: 20px 0 12px;
+  }
+
+  .section-title h2,
+  .page-title h1 {
+    font-size: 19px;
+  }
+
+  .page-title {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+
+  .clean-task-grid,
+  .task-grid {
+    gap: 12px;
+  }
+
+  .task-card {
+    min-height: auto;
+  }
+
+  .task-art,
+  .featured-tasks .task-card:first-child .task-art {
+    height: 112px;
+  }
+
+  .task-body h3,
+  .featured-tasks .task-card:first-child .task-body h3 {
+    font-size: 15px;
+  }
+
+  .feed-row {
+    grid-template-columns: 46px minmax(0, 1fr) 52px;
+  }
+
+  .feed-row b {
+    grid-column: 2 / 4;
+    text-align: left;
+  }
+
+  .rank-row {
+    grid-template-columns: 34px minmax(0, 1fr) 54px;
+    gap: 10px;
+  }
+
+  .process-node {
+    min-height: auto;
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 8px 10px;
+    align-items: center;
+  }
+
+  .process-node span {
+    grid-row: 1 / 3;
+    margin-bottom: 0;
+  }
+
+  .process-node em {
+    margin-top: 0;
+  }
+
+  .advantage {
+    min-height: 72px;
+    padding: 14px;
+  }
+
+  .advantage .icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .filters {
+    gap: 9px;
+  }
+
+  .control {
+    min-height: 42px;
+    border-radius: 10px;
+  }
+
+  .task-row {
+    grid-template-columns: 74px minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .task-row:hover {
+    transform: none;
+  }
+
+  .thumb {
+    height: 74px;
+    align-self: start;
+  }
+
+  .task-row > .price {
+    grid-column: 2;
+    font-size: 16px;
+  }
+
+  .task-row > .status,
+  .task-row > .muted,
+  .task-row > button {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .task-row > button {
+    width: 100%;
+    margin-top: 2px;
+  }
+
+  .detail-hero {
+    min-height: 190px;
+  }
+
+  .info-grid,
+  .form-grid,
+  .flow {
+    gap: 10px;
+  }
+
+  .flow-step {
+    min-height: auto;
+  }
+
+  .tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+  }
+
+  .profile-menu {
+    overflow: hidden;
+  }
+
+  .profile-menu-head {
+    display: none;
+  }
+
+  .profile-menu {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 10px;
+    scrollbar-width: none;
+  }
+
+  .profile-menu::-webkit-scrollbar {
+    display: none;
+  }
+
+  .profile-menu .nav-btn {
+    flex: 0 0 auto;
+    min-height: 38px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+  }
+
+  .profile-summary h1 {
+    font-size: 24px;
+  }
+
+  .kv {
+    grid-template-columns: 88px minmax(0, 1fr);
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .message-row,
+  .setting-row {
+    gap: 10px;
+    min-height: auto;
+  }
+
+  .admin-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chart {
+    height: 190px;
+    gap: 8px;
+    padding: 12px 8px 30px;
+  }
+
+  .bar {
+    min-width: 22px;
+  }
+
+  .auth-shell {
+    place-items: start center;
+    min-height: auto;
+  }
+
+  .auth-card {
+    padding: 20px;
+  }
+
+  .footer {
+    margin-bottom: 72px;
+    font-size: 12px;
+  }
+
+  .toast {
+    left: 12px;
+    right: 12px;
+    bottom: 88px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .board-metrics,
+  .stats,
+  .home-stat-strip,
+  .profile-overview-grid,
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-row .nav-btn {
+    padding: 0 10px;
+  }
+
+  .mobile-bottom-nav .nav-btn span {
+    font-size: 10px;
+  }
 }

@@ -124,6 +124,13 @@ function navButton(item, compact = false) {
 }
 
 function shell(content) {
+  const mobileNav = [
+    ["home", "首页", "home"],
+    ["hall", "大厅", "list"],
+    ["publish", "发布", "plus"],
+    ["mine", "任务", "brief"],
+    ["profile", "我的", "user"]
+  ];
   return `
     <div class="app-shell">
       <header class="topbar">
@@ -136,16 +143,19 @@ function shell(content) {
           <input placeholder="搜索任务、游戏、用户" />
           ${icon("search")}
         </label>
-        <button class="secondary" onclick="setRoute('login')">登录</button>
-        <button class="primary" onclick="setRoute('register')">注册</button>
-        <button class="icon-btn" onclick="setRoute('messages')" title="消息">${icon("bell")}</button>
-        <button class="icon-btn" onclick="toggleTheme()" title="切换日夜模式">${icon("moon")}</button>
-        <button class="avatar-btn" onclick="setRoute('profile')" title="个人中心">玩</button>
+        <div class="top-actions">
+          <button class="secondary auth-btn" onclick="setRoute('login')">登录</button>
+          <button class="primary auth-btn" onclick="setRoute('register')">注册</button>
+          <button class="icon-btn" onclick="setRoute('messages')" title="消息">${icon("bell")}</button>
+          <button class="icon-btn" onclick="toggleTheme()" title="切换日夜模式">${icon("moon")}</button>
+          <button class="avatar-btn" onclick="setRoute('profile')" title="个人中心">玩</button>
+        </div>
       </header>
       <aside class="sidebar">
         <nav class="side-nav">${nav.map((item) => navButton(item)).join("")}</nav>
       </aside>
       <main class="main">${content}</main>
+      <nav class="mobile-bottom-nav">${mobileNav.map((item) => navButton(item)).join("")}</nav>
       ${state.modalTask ? modal() : ""}
       ${state.toast ? `<div class="toast">${state.toast}</div>` : ""}
     </div>
