@@ -151,9 +151,6 @@ function shell(content) {
           <button class="avatar-btn" onclick="setRoute('profile')" title="个人中心">玩</button>
         </div>
       </header>
-      <aside class="sidebar">
-        <nav class="side-nav">${nav.map((item) => navButton(item)).join("")}</nav>
-      </aside>
       <main class="main">${content}</main>
       <nav class="mobile-bottom-nav">${mobileNav.map((item) => navButton(item)).join("")}</nav>
       ${state.modalTask ? modal() : ""}
@@ -176,7 +173,7 @@ function homeView() {
   ];
   return `
     <div class="view home-stack">
-      <section class="home-hero-grid clean-home-hero">
+      <section class="home-hero-grid clean-home-hero home-hero-full">
         <div class="hero hero-xl clean-hero">
           <div class="hero-content">
             <div class="eyebrow">${icon("admin")} 展示版任务撮合与托管平台</div>
@@ -210,20 +207,6 @@ function homeView() {
             </div>
           </div>
         </div>
-        <aside class="home-side">
-          ${profileMini()}
-          <div class="market-feed card">
-            <div class="section-title compact"><h2>实时行情</h2><button class="ghost" onclick="setRoute('hall')">大厅</button></div>
-            ${liveOrders.map((item) => `
-              <div class="feed-row">
-                <span>${item[0]}</span>
-                <strong>${item[1]}</strong>
-                <em>${item[2]}</em>
-                <b>${item[3]}</b>
-              </div>
-            `).join("")}
-          </div>
-        </aside>
       </section>
 
       <section class="home-stat-strip clean-stats">
@@ -235,20 +218,45 @@ function homeView() {
         ].map((item) => `<div class="stat-tile"><span>${item[0]}</span><strong>${item[1]}</strong><em>${item[2]}</em></div>`).join("")}
       </section>
 
+      <section class="game-dock card">
+        <div class="section-title compact"><h2>热门游戏</h2><button class="ghost" onclick="setRoute('hall')">更多游戏</button></div>
+        <div class="game-dock-grid">
+          ${["原神", "王者荣耀", "崩坏：星穹铁道", "DNF", "英雄联盟", "和平精英", "更多游戏"].map((name, index) => `
+            <button class="game-chip" onclick="setRoute('hall')">
+              <span style="--chip-art:${art[index % art.length]}"></span>
+              <strong>${name}</strong>
+            </button>
+          `).join("")}
+        </div>
+      </section>
+
       <section class="home-content-grid">
         <div>
           <div class="section-title"><div><h2>热门任务</h2><p>高价、热门、待处理任务优先展示。</p></div><button class="ghost" onclick="setRoute('hall')">更多任务 ${icon("chevron")}</button></div>
           <div class="task-grid clean-task-grid">${tasks.slice(0, 4).map(taskCard).join("")}</div>
         </div>
-        <aside class="card leaderboard">
-          <div class="section-title compact"><h2>接单榜</h2><span class="muted small">本周</span></div>
-          ${ranks.map((item, index) => `
-            <div class="rank-row">
-              <span class="rank-index">${index + 1}</span>
-              <div><strong>${item[0]}</strong><div class="muted small">${item[1]}</div></div>
-              <b>${item[2]}</b>
-            </div>
-          `).join("")}
+        <aside class="home-side-panel">
+          <div class="card leaderboard">
+            <div class="section-title compact"><h2>接单榜</h2><span class="muted small">本周</span></div>
+            ${ranks.map((item, index) => `
+              <div class="rank-row">
+                <span class="rank-index">${index + 1}</span>
+                <div><strong>${item[0]}</strong><div class="muted small">${item[1]}</div></div>
+                <b>${item[2]}</b>
+              </div>
+            `).join("")}
+          </div>
+          <div class="market-feed card">
+            <div class="section-title compact"><h2>实时行情</h2><button class="ghost" onclick="setRoute('hall')">大厅</button></div>
+            ${liveOrders.map((item) => `
+              <div class="feed-row">
+                <span>${item[0]}</span>
+                <strong>${item[1]}</strong>
+                <em>${item[2]}</em>
+                <b>${item[3]}</b>
+              </div>
+            `).join("")}
+          </div>
         </aside>
       </section>
 
@@ -306,8 +314,9 @@ function profileMini() {
 }
 
 function hallView() {
+  const categories = ["全部游戏", "原神", "王者荣耀", "崩坏：星穹铁道", "DNF", "英雄联盟", "和平精英", "永劫无间", "更多游戏"];
   return `
-    <section class="view">
+    <section class="view hall-page">
       <div class="page-title"><div><h1>任务大厅</h1><p>浏览、筛选并进入任务详情，当前均为模拟数据。</p></div><button class="primary" onclick="setRoute('publish')">发布任务</button></div>
       <div class="filters">
         <select class="control"><option>全部游戏</option><option>王者荣耀</option><option>原神</option><option>英雄联盟</option></select>
@@ -316,7 +325,12 @@ function hallView() {
         <select class="control"><option>发布时间</option><option>最新发布</option><option>一天内</option><option>一周内</option></select>
         <button class="secondary">筛选</button>
       </div>
-      <div class="task-list">${tasks.map(taskRow).join("")}</div>
+      <div class="hall-layout">
+        <aside class="hall-categories card">
+          ${categories.map((item, index) => `<button class="${index === 0 ? "active" : ""}">${item}</button>`).join("")}
+        </aside>
+        <div class="task-list hall-task-list">${tasks.map(taskRow).join("")}</div>
+      </div>
     </section>
   `;
 }
